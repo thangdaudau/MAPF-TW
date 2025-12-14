@@ -1,0 +1,21 @@
+# Bỏ qua thư mục build
+**/build/
+**/__pycache__/
+
+# Bỏ qua các file binary/thư viện sinh ra
+*.so
+*.pyd
+*.dll
+*.dylib
+*.a
+*.exe
+*.o
+
+# Bỏ qua config IDE
+**/.vscode/
+.idea/
+
+# misc
+.obsidian/
+**/.venv/
+ProgressSummary.md
