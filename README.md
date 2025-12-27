@@ -4,7 +4,7 @@ Dự án triển khai một số thuật toán giải quyết bài toán Tìm đ
 
 > **⚠️ LƯU Ý QUAN TRỌNG TRƯỚC KHI BẮT ĐẦU:**
 > 
--  Dự án này **BẮT BUỘC** chạy trên môi trường **WSL2 – Ubuntu 22.04 LTS 2**
+- Dự án này **BẮT BUỘC** chạy trên môi trường **WSL2 – Ubuntu 22.04 LTS 2** (24.04 lỗi systemd cay vl)
 >   
 - Toàn bộ thư viện **C++  cài bằng `apt`**
     
