@@ -4,13 +4,13 @@ Dự án triển khai một số thuật toán giải quyết bài toán Tìm đ
 
 > **⚠️ LƯU Ý QUAN TRỌNG TRƯỚC KHI BẮT ĐẦU:**
 > 
-- Dự án này **BẮT BUỘC** chạy trên môi trường **WSL2 – Ubuntu 22.04 LTS 2** (24.04 lỗi systemd cay vl)
+>- Dự án này **BẮT BUỘC** chạy trên môi trường **WSL2 – Ubuntu 22.04 LTS 2** (24.04 lỗi `systemd` cay `vl`)
 >   
-- Toàn bộ thư viện **C++  cài bằng `apt`**
-    
-- Visualization chạy qua **WSLg** (Windows 11)
-
-- Giao diện trực quan hóa hơi tật nhưng có là được.
+>- Toàn bộ thư viện **C++  cài bằng `apt`**
+>    
+>- Visualization chạy qua **WSLg** (Windows 11)
+>
+>- Giao diện trực quan hóa hơi tật nhưng có là được.
 
 ## 1. Cài đặt môi trường (Installation)
 
@@ -37,8 +37,6 @@ sudo apt install -y \
     x11-apps
 ```
 
----
-
 ### Bước 3: Cài Python cơ bản (system)
 
 Bash
@@ -52,8 +50,6 @@ sudo apt install -y \
     python3-tk
 ```
 
----
-
 ### Bước 4: Tạo và kích hoạt Virtual Environment
 
 Tại thư mục gốc dự án:
@@ -62,8 +58,6 @@ Tại thư mục gốc dự án:
 python3 -m venv .venv
 source .venv/bin/activate
 ```
-
----
 
 ### Bước 5: Cài thư viện Python bằng pip
 
@@ -80,27 +74,7 @@ pip install \
 ```
 
 > ⚠️ **KHÔNG cài Python libs bằng `apt`**  
-> → Tránh trộn ABI, tránh bug ngầm khi debug C++ ↔ Python.```
-
-### Bước 2: Tạo môi trường ảo (Virtual Environment)
-
-1. **Tạo `venv` (Tại thư mục gốc dự án):**
-    
-    Bash
-    
-    ```
-    python3 -m venv .venv
-    ```
-    
-2. **Kích hoạt `venv`:**
-    
-    Bash
-    
-    ```
-    source .venv/bin/activate
-    ```
-    
-    _Dấu hiệu thành công: Bạn sẽ thấy chữ `(.venv)` xuất hiện ở đầu dòng lệnh._
+> → Tránh trộn ABI, tránh bug ngầm khi debug C++ ↔ Python.
     
 
 ## 2. Cấu hình VS Code
@@ -220,14 +194,14 @@ Plaintext
 
 ```
 MAPF-TW/
-├── build/                  # Chứa file biên dịch .pyd sau khi build
+├── build/                  # Chứa file biên dịch .pyd/.so sau khi build
 ├── core/                   # Chứa thuật toán (đang phát triển)
 ├── res/                    # Input (.input.yaml) và Output (.output.yaml)
-├── visualize/              # Các công cụ giao diện
+├── visualize/              
 │   ├── drawer.py           # Tool vẽ map
 │   ├── visualizer.py       # Visualizer cũ (Matplotlib)
 │   └── visualizer_smooth.py # Visualizer mới (Pygame)
-├── main.py                 # Script chính chạy thuật toán
-├── utils.py                # Các hàm tiện ích Python
+├── main.py                 
+├── utils.py                
 └── CMakeLists.txt          # Cấu hình Build cho CMake
 ```
