@@ -53,7 +53,7 @@ if __name__ == '__main__':
     elif func_name == 'ICBS':
         result = ICBS(n, m, E, S)
     elif func_name == 'GCBS':
-        from mapf_solver import ConflictHeuristic
+        from core.wrapper import GCBSMode, ConflictHeuristic
         result = GCBS(n, m, E, S)
 
     if result:

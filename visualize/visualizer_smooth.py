@@ -115,8 +115,8 @@ class Animation:
         self.output_name = output_name
         
         # Fixed screen dimensions
-        self.screen_width = 900
-        self.screen_height = 600
+        self.screen_width = 1600
+        self.screen_height = 900
         
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         pygame.display.set_caption("Multi-Agent Pathfinding Visualization")

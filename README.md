@@ -4,50 +4,95 @@ Dự án triển khai một số thuật toán giải quyết bài toán Tìm đ
 
 > **⚠️ LƯU Ý QUAN TRỌNG TRƯỚC KHI BẮT ĐẦU:**
 > 
-> - Dự án này **BẮT BUỘC** chạy trên môi trường **MSYS2 / MinGW64**.
->     
-> - Tuyệt đối **KHÔNG dùng `pip`** để cài các thư viện nặng `(numpy, pygame...)` nhằm tránh lỗi xung đột DLL. Chúng ta sẽ dùng `pacman`.
->     
-> - Hãy đảm bảo bạn đã cài đặt **MSYS2** và đang mở **MSYS MinGW64 Shell**.
->     
+-  Dự án này **BẮT BUỘC** chạy trên môi trường **WSL2 – Ubuntu 22.04 LTS 2**
+>   
+- Toàn bộ thư viện **C++  cài bằng `apt`**
+    
+- Visualization chạy qua **WSLg** (Windows 11)
+
+- Giao diện trực quan hóa hơi tật nhưng có là được.
 
 ## 1. Cài đặt môi trường (Installation)
 
-Thực hiện lần lượt các bước sau trong **Terminal MinGW64**:
+Thực hiện các lệnh sau **bên trong WSL Ubuntu 22.04**.
 
-### Bước 1: Cài đặt thư viện hệ thống (Pacman)
-
-Copy và chạy lệnh sau để cài đặt Python, trình biên dịch C++ và các thư viện phụ thuộc:
+### Bước 1: Cập nhật hệ thống
 
 Bash
 
 ```
-pacman -S --needed --noconfirm \
-    mingw-w64-x86_64-toolchain \
-    mingw-w64-x86_64-cmake \
-    mingw-w64-x86_64-python \
-    mingw-w64-x86_64-python-numpy \
-    mingw-w64-x86_64-python-matplotlib \
-    mingw-w64-x86_64-python-pygame \
-    mingw-w64-x86_64-python-yaml \
-    mingw-w64-x86_64-python-pillow \
-    mingw-w64-x86_64-python-opencv \
-    mingw-w64-x86_64-python-tkinter
+sudo apt update && sudo apt upgrade -y
 ```
 
-### Bước 2: Tạo môi trường ảo (Virtual Environment)
+### Bước 2: Cài compiler C++, CMake, Boost và WSLg
 
-Chúng ta tạo `.venv` để quản lý dự án, nhưng dùng cờ `--system-site-packages` để nó "nhìn thấy" các thư viện `(numpy, pygame...)` đã cài bằng `pacman` ở trên.
+Bash
+
+```
+sudo apt install -y \
+    build-essential \
+    cmake \
+    gdb \
+    libboost-all-dev \
+    x11-apps
+```
+
+---
+
+### Bước 3: Cài Python cơ bản (system)
+
+Bash
+
+```
+sudo apt install -y \
+    python3 \
+    python3-dev \
+    python3-venv \
+    python3-pip \
+    python3-tk
+```
+
+---
+
+### Bước 4: Tạo và kích hoạt Virtual Environment
+
+Tại thư mục gốc dự án:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+---
+
+### Bước 5: Cài thư viện Python bằng pip
+
+```
+pip install --upgrade pip
+pip install \
+    numpy \
+    matplotlib \
+    pygame \
+    pyyaml \
+    opencv-python \
+    keras \
+    tensorflow
+```
+
+> ⚠️ **KHÔNG cài Python libs bằng `apt`**  
+> → Tránh trộn ABI, tránh bug ngầm khi debug C++ ↔ Python.```
+
+### Bước 2: Tạo môi trường ảo (Virtual Environment)
 
 1. **Tạo `venv` (Tại thư mục gốc dự án):**
     
     Bash
     
     ```
-    python -m venv .venv --system-site-packages
+    python3 -m venv .venv
     ```
     
-1. **Kích hoạt `venv`:**
+2. **Kích hoạt `venv`:**
     
     Bash
     
@@ -87,7 +132,7 @@ Dự án dùng CMake Tools để biên dịch.
     
     - Nhấn `Ctrl` + `Shift` + `P` -> Gõ `CMake: Configure`.
         
-    - Chọn Kit: **GCC ... x86_64-w64-mingw32** (Chọn đúng bản GCC của MinGW64, không chọn Visual Studio).
+    - Chọn Kit: **GCC ... x86_64-linux-gnu** (Chọn đúng bản GCC của WSL)
         
 2. **Biên dịch (Build):**
     
@@ -107,7 +152,7 @@ File `main.py` nằm ở thư mục gốc.
 Bash
 
 ```
-python main.py <ALGO> <MAP_NAME>
+python3 main.py <ALGO> <MAP_NAME>
 ```
 
 - **ALGO:**
@@ -128,7 +173,7 @@ python main.py <ALGO> <MAP_NAME>
 Bash
 
 ```
-python main.py GCBS 6x6x6
+python3 main.py GCBS 6x6x6
 ```
 
 _(Kết quả output sẽ được lưu vào `res/6x6x6.output.yaml`)_
@@ -142,7 +187,7 @@ Các công cụ hiển thị nằm trong thư mục `visualize/`.
     Bash
     
     ```
-    python visualize/visualizer_smooth.py 6x6x6
+    python3 visualize/visualizer_smooth.py 6x6x6
     ```
     
 - **Matplotlib Visualizer (Cũ):**
@@ -150,7 +195,7 @@ Các công cụ hiển thị nằm trong thư mục `visualize/`.
     Bash
     
     ```
-    python visualize/visualizer.py 6x6x6
+    python3 visualize/visualizer.py 6x6x6
     ```
     
 
@@ -161,7 +206,7 @@ Công cụ vẽ map để tạo dữ liệu test.
 Bash
 
 ```
-python visualize/drawer.py
+python3 visualize/drawer.py
 ```
 
 - **Phím tắt:** `1` (Tường), `2` (Agent), `3` (Goal), `4` (Xóa).
@@ -175,7 +220,6 @@ Plaintext
 
 ```
 MAPF-TW/
-├── .venv/                  # Môi trường ảo (Kế thừa gói hệ thống MinGW64)
 ├── build/                  # Chứa file biên dịch .pyd sau khi build
 ├── core/                   # Chứa thuật toán (đang phát triển)
 ├── res/                    # Input (.input.yaml) và Output (.output.yaml)

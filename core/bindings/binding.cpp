@@ -91,7 +91,7 @@ PYBIND11_MODULE(mapf_solver, m) {
                 py::gil_scoped_release release;
                 self.solve(&SafeSignalCheck);
             } else {
-                self.solve(PyErr_CheckSignals);
+                self.solve(&PyErr_CheckSignals);
             }
 
             if (PyErr_Occurred()) throw py::error_already_set();
@@ -120,7 +120,7 @@ PYBIND11_MODULE(mapf_solver, m) {
                 py::gil_scoped_release release;
                 self.solve(&SafeSignalCheck);
             } else {
-                self.solve(PyErr_CheckSignals);
+                self.solve(&PyErr_CheckSignals);
             }
 
             if (PyErr_Occurred()) throw py::error_already_set();

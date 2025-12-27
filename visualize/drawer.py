@@ -22,7 +22,7 @@ root.attributes('-topmost', True)
 
 # --- Khởi tạo ---
 pygame.init()
-SCREEN_W, SCREEN_H = 1200, 650
+SCREEN_W, SCREEN_H = 1600, 900
 screen = pygame.display.set_mode((SCREEN_W, SCREEN_H))
 pygame.display.set_caption("Map Generator")
 font = pygame.font.SysFont(None, 24)

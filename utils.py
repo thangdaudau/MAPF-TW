@@ -1,49 +1,8 @@
-from argcomplete import completers
 import glob
 import os
 from typing import List, Tuple, Dict, Any
 from pathlib import Path
 
-class ResCompleter(completers.BaseCompleter):
-    """
-    Tìm các tên file cơ bản (basename) trong thư mục /res 
-    mà có đủ cặp input/output.
-    """
-    def __init__(self, res_dir='res/'):
-        self.res_dir = res_dir
-        self.available_basenames = self._scan_res_files()
-
-    def _scan_res_files(self):
-        """Quét và tìm các basename đủ cặp."""
-        if not os.path.isdir(self.res_dir):
-            return []
-
-        # 1. Tìm tất cả các file *.input.yaml
-        input_files = glob.glob(os.path.join(self.res_dir, '*.input.yaml'))
-        
-        valid_basenames = set()
-        
-        for input_path in input_files:
-            # Lấy tên file (ví dụ: 6x6x6.input.yaml)
-            filename = os.path.basename(input_path)
-            
-            # Lấy basename (ví dụ: 6x6x6)
-            basename = filename.replace('.input.yaml', '')
-            
-            # Tạo tên output tương ứng
-            output_filename = basename + '.output.yaml'
-            output_path = os.path.join(self.res_dir, output_filename)
-            
-            # Kiểm tra xem file output có tồn tại không
-            if os.path.exists(output_path):
-                valid_basenames.add(basename)
-
-        return sorted(list(valid_basenames))
-
-    def __call__(self, prefix, **kwargs):
-        """Thực hiện gợi ý dựa trên prefix người dùng gõ."""
-        # Trả về danh sách các basename khớp với những gì người dùng đang gõ
-        return [b for b in self.available_basenames if b.startswith(prefix)]
 
 def bfs0(g: list[list[int]], s, e) -> int:
     q = [s]

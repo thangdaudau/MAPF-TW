@@ -2,11 +2,10 @@ import sys
 import os
 import time
 from typing import List, Tuple
-# Giữ nguyên import cũ của ông
-from core.ILPBased import MIP_MAPF_TW
+
 
 # --- PHẦN 1: LIÊN KẾT THƯ VIỆN C++ ---
-# Tìm đường dẫn: core -> cha -> MAPF-TW (root)
+# Tìm đường dẫn: wrapper.py -> core -> MAPF-TW (root)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # File .pyd/.so thường nằm ở: build/core/bindings
@@ -38,6 +37,7 @@ else:
     class ConflictHeuristic:
         NUM_CONFLICTS, NUM_CONFLICTING_AGENTS, NUM_CONFLICTING_PAIRS, VERTEX_COVER, ALTERNATING = 0, 1, 2, 3, 4
 
+
 # --- PHẦN 2: WRAPPER CODE ---
 
 time_limit_in_seconds = -1
@@ -46,11 +46,14 @@ def set_time_limit(seconds: int):
     global time_limit_in_seconds
     time_limit_in_seconds = seconds
 
+if __name__ != '__main__':
+    from core.ILPBased import MIP_MAPF_TW
+else:
+    from ILPBased import MIP_MAPF_TW
 def ILP(V: int, E: list[Tuple[int, int]], S: list[Tuple[int, int, int, int]], T: int):
     # Hàm cũ của ông, giữ nguyên
     res = MIP_MAPF_TW(V, E, S, T, time_limit_in_seconds)
     return res['objective'], res['paths'] if res else None
-
 
 # --- CÁC HÀM MỚI ---
 
