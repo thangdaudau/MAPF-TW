@@ -1,5 +1,11 @@
 # Multi-Agent Path Finding (MAPF) with Time Windows
 
+Clone dự án này:
+
+```
+git clone --recurse-submodules https://github.com/thangdaudau/MAPF-TW.git
+```
+
 Dự án triển khai một số thuật toán giải quyết bài toán Tìm đường đa tác nhân (MAPF) được sửa đổi để phù hợp với hàm mục tiêu của bài toán MAPF-TW sử dụng Core C++ hiệu năng cao kết hợp với giao diện Python.
 
 > **⚠️ LƯU Ý QUAN TRỌNG TRƯỚC KHI BẮT ĐẦU:**
