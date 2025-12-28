@@ -76,7 +76,9 @@ pip install \
     pyyaml \
     opencv-python \
     keras \
-    tensorflow
+    tensorflow \
+    gym \ 
+    ipykernel
 ```
 
 > ⚠️ **KHÔNG cài Python libs bằng `apt`**  
