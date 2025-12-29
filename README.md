@@ -1,6 +1,6 @@
 # Multi-Agent Path Finding (MAPF) with Time Windows
 
-Clone dự án này:
+Clone repo này:
 
 ```
 git clone --recurse-submodules https://github.com/thangdaudau/MAPF-TW.git
@@ -70,6 +70,7 @@ source .venv/bin/activate
 ```
 pip install --upgrade pip
 pip install \
+    pulp \
     numpy \
     matplotlib \
     pygame \
@@ -103,7 +104,7 @@ Sau khi cài đặt xong môi trường, hãy mở VS Code tại thư mục dự
         
     - Chọn dòng có đường dẫn trỏ tới thư mục `.venv` vừa tạo.
         
-        - _Ví dụ:_ `./.venv/bin/python` hoặc `./.venv/Scripts/python.exe`.
+        - _Ví dụ:_ `Python 3.10.12 (.venv) ./.venv/bin/python`.
             
 
 ## 3. Hướng dẫn Build
@@ -115,6 +116,8 @@ Dự án dùng CMake Tools để biên dịch.
     - Nhấn `Ctrl` + `Shift` + `P` -> Gõ `CMake: Configure`.
         
     - Chọn Kit: **GCC ... x86_64-linux-gnu** (Chọn đúng bản GCC của WSL)
+
+    - Nếu không thấy kit thì chọn: **[Scan for kits]** hoặc Nhấn `Ctrl` + `Shift` + `P` -> Gõ `CMake: Scan for Kits`
         
 2. **Biên dịch (Build):**
     
