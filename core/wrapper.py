@@ -41,10 +41,15 @@ else:
 # --- PHẦN 2: WRAPPER CODE ---
 
 time_limit_in_seconds = -1
+release_gil = False
 
 def set_time_limit(seconds: int):
     global time_limit_in_seconds
     time_limit_in_seconds = seconds
+
+def set_release_gil(is_release_gil: bool):
+    global release_gil
+    release_gil = is_release_gil
 
 if __name__ != '__main__':
     from core.ILPBased import MIP_MAPF_TW
@@ -68,7 +73,7 @@ def _run_solver(solver):
     
     # C++ binding giờ trả về std::pair<double, vector<vector<int>>>
     # Python sẽ nhận được tuple (cost, paths)
-    cost, paths = solver.solve()
+    cost, paths = solver.solve(release_gil)
     return None if not paths else (cost, paths)
 
 def CBS(n: int, m: int, E: list[Tuple[int, int]], S: list[Tuple[int, int, int, int]]):
