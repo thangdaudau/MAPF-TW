@@ -1,4 +1,5 @@
 # Multi-Agent Path Finding (MAPF) with Time Windows
+<img width="900" height="600" alt="warehouse24x32_30" src="https://github.com/user-attachments/assets/0cfca0c6-b56b-448a-a634-330ddcb51d7c" />
 
 Clone repo này:
 
